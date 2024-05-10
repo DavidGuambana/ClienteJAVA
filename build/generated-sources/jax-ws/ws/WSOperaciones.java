@@ -1,7 +1,6 @@
 
 package ws;
 
-import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -28,67 +27,49 @@ public interface WSOperaciones {
     /**
      * 
      * @param clave
-     * @param valor
+     * @param usuario
      * @return
-     *     returns java.util.List<ws.Producto>
+     *     returns ws.Usuario
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getProductosByClaveValor", targetNamespace = "http://ws/", className = "ws.GetProductosByClaveValor")
-    @ResponseWrapper(localName = "getProductosByClaveValorResponse", targetNamespace = "http://ws/", className = "ws.GetProductosByClaveValorResponse")
-    @Action(input = "http://ws/WSOperaciones/getProductosByClaveValorRequest", output = "http://ws/WSOperaciones/getProductosByClaveValorResponse")
-    public List<Producto> getProductosByClaveValor(
+    @RequestWrapper(localName = "getCuenta", targetNamespace = "http://ws/", className = "ws.GetCuenta")
+    @ResponseWrapper(localName = "getCuentaResponse", targetNamespace = "http://ws/", className = "ws.GetCuentaResponse")
+    @Action(input = "http://ws/WSOperaciones/getCuentaRequest", output = "http://ws/WSOperaciones/getCuentaResponse")
+    public Usuario getCuenta(
+        @WebParam(name = "usuario", targetNamespace = "")
+        String usuario,
         @WebParam(name = "clave", targetNamespace = "")
-        String clave,
-        @WebParam(name = "valor", targetNamespace = "")
-        String valor);
+        String clave);
 
     /**
      * 
-     * @param password
-     * @param username
+     * @param usuario
      * @return
-     *     returns java.lang.Boolean
+     *     returns boolean
      */
-    @WebMethod(operationName = "Login")
+    @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "Login", targetNamespace = "http://ws/", className = "ws.Login")
-    @ResponseWrapper(localName = "LoginResponse", targetNamespace = "http://ws/", className = "ws.LoginResponse")
-    @Action(input = "http://ws/WSOperaciones/LoginRequest", output = "http://ws/WSOperaciones/LoginResponse")
-    public Boolean login(
-        @WebParam(name = "username", targetNamespace = "")
-        String username,
-        @WebParam(name = "password", targetNamespace = "")
-        String password);
+    @RequestWrapper(localName = "updateUsuario", targetNamespace = "http://ws/", className = "ws.UpdateUsuario")
+    @ResponseWrapper(localName = "updateUsuarioResponse", targetNamespace = "http://ws/", className = "ws.UpdateUsuarioResponse")
+    @Action(input = "http://ws/WSOperaciones/updateUsuarioRequest", output = "http://ws/WSOperaciones/updateUsuarioResponse")
+    public boolean updateUsuario(
+        @WebParam(name = "Usuario", targetNamespace = "")
+        Usuario usuario);
 
     /**
      * 
-     * @param precio
-     * @param categoria
-     * @param proveedor
-     * @param id
-     * @param stock
-     * @param nombre
+     * @param usuario
      * @return
      *     returns java.lang.Boolean
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "setProducto", targetNamespace = "http://ws/", className = "ws.SetProducto")
-    @ResponseWrapper(localName = "setProductoResponse", targetNamespace = "http://ws/", className = "ws.SetProductoResponse")
-    @Action(input = "http://ws/WSOperaciones/setProductoRequest", output = "http://ws/WSOperaciones/setProductoResponse")
-    public Boolean setProducto(
-        @WebParam(name = "id", targetNamespace = "")
-        int id,
-        @WebParam(name = "nombre", targetNamespace = "")
-        String nombre,
-        @WebParam(name = "precio", targetNamespace = "")
-        double precio,
-        @WebParam(name = "stock", targetNamespace = "")
-        int stock,
-        @WebParam(name = "categoria", targetNamespace = "")
-        String categoria,
-        @WebParam(name = "proveedor", targetNamespace = "")
-        String proveedor);
+    @RequestWrapper(localName = "addCuenta", targetNamespace = "http://ws/", className = "ws.AddCuenta")
+    @ResponseWrapper(localName = "addCuentaResponse", targetNamespace = "http://ws/", className = "ws.AddCuentaResponse")
+    @Action(input = "http://ws/WSOperaciones/addCuentaRequest", output = "http://ws/WSOperaciones/addCuentaResponse")
+    public Boolean addCuenta(
+        @WebParam(name = "Usuario", targetNamespace = "")
+        Usuario usuario);
 
 }
